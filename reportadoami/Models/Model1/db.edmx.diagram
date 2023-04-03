@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96d4798c57724fc2a87e40b4844cf005" Name="Diagram1">
+        <EntityTypeShape EntityType="ANALISISModel.clientes_asesor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CIFRAS_AMIHIST" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CLIENTE_ASESOR" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CLIENTES_CONTPAQ" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CLIENTES_CONTPAQDOM" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CONCENTRADO_LABORATORIO" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_CONTPASAT" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_EMPRESAS" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_FACTURAS_ORIGEN" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_FOLIOSFER" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETA_DESVIO" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETA_DESVIO_ONLINE" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETADIA" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETADIA_CEM" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETADIA_CEM2" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETADIA_CEM2022" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETADIA_CEM3" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PAPELETAS_ORDEN" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PED_KDM2KDM1" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PEDIDOS_aMI" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PEDIDOSPDTES" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PERFILESONLINE" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PERFINPACIENTE" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PRODUCTOS_CONTPAQ" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PRODUCTOSK" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PRUEBAS_HOY" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_PRUEBASMAYO" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_REG_PAPELETADIA" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_REPORTE_FACT" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_RESUL_EXAMEN" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_RESUL_EXAMEN1" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_RESUMENCTE" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_SALDOSINICIALESCOMPAC" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_SEG_PRUEBAS" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_SERVICIOSGACSA" Width="1.5" PointX="6.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_SERVICIOSGACSA_AUDIO" Width="1.5" PointX="22.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_SERVICIOSGACSA_ESPIRO" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_TRELLEBORG_ADUIOMETRIA" Width="1.5" PointX="22.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_TRELLEBORG_ESPIROMETRIA" Width="1.5" PointX="2.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_TRELLEBORG_EXMEDICO" Width="1.5" PointX="16.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_CG_VISTAEXAM" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_CLIENTE_ASESR" Width="1.5" PointX="12.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PAPSA_CAT_TOTALES" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PAPSA_CAT_TOTALES2" Width="1.5" PointX="26.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PAPSA_CAT_TOTALES3" Width="1.5" PointX="26.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PERF" Width="1.5" PointX="26.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PERFILES" Width="1.5" PointX="26.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PRODUCSIM" Width="1.5" PointX="26.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.TU_FM_PRODUCTOS_ACTUALES" Width="1.5" PointX="26.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_CG_FACTURAS" Width="1.5" PointX="2.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_CORTE_TOYOTA" Width="1.5" PointX="12.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_SEGUIMIENTO_PERFILES" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_TOY_PRUEBASINTERPRETACION" Width="1.5" PointX="28.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_TOY_PRUEBASINTERPRETACION_02" Width="1.5" PointX="28.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ANALISISModel.VW_TOY_PRUEBASINTERPRETACION_CRAM" Width="1.5" PointX="28.75" PointY="26.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
