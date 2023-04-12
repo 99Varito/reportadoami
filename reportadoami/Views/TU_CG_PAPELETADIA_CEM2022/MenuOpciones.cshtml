@@ -1,8 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "MenuOpciones";
-    bool mostrarCovid = Request.QueryString["mostrarExamenesCovid"] == "True";
+    bool mostrarCovid = ViewBag.mostrarExamenesCovid ?? false;
 }
+
 <div>
     @using (Html.BeginForm("Index", "TU_CG_PAPELETADIA_CEM2022", FormMethod.Get))
     {
@@ -16,11 +16,47 @@
                 <button type="submit" name="ofna" value="OTRO" class="btn btn-primary">OTRO</button>
             </div>
             <div class="form-check form-switch">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Ver Covid</label>
-                <input class="form-check-input" type="checkbox" id="mostrarExamenesCovid" onchange="actualizarVista()" style="max-width:50px" @if (mostrarCovid) { <text> checked</text>}>
+                <label class="form-check-label" for="mostrarExamenesCovid">Ver Covid</label>
+                <input class="form-check-input" type="checkbox" id="mostrarExamenesCovid" @if (mostrarCovid) { <text> checked</text> } style="max-width:50px" />
             </div>
         </div>
     }
 </div>
 
+<div id="vistaParcial">
+    <!-- Aquí se mostrarán los resultados de la búsqueda -->
+</div>
 
+<script>
+    function actualizarVista() {
+    var checkboxValue = document.getElementById("mostrarExamenesCovid").checked;
+    console.log("Checkbox value: " + checkboxValue);
+
+    if (checkboxValue) {
+        $.ajax({
+            url: "@Url.Action("IndexConCovid")",
+            success: function (result) {
+                $("#vistaParcial").html(result);
+            }
+        });
+    } else {
+        $.ajax({
+            url: "@Url.Action("IndexSinCovid")",
+            success: function (result) {
+                $("#vistaParcial").html(result);
+            }
+        });
+    }
+}
+
+    $(document).ready(function () {
+        $("#mostrarExamenesCovid").change(function () {
+            var isChecked = $(this).is(":checked");
+            var url = "@Url.Action("Index", "TU_CG_PAPELETADIA_CEM2022")";
+            $.get(url, { mostrarExamenesCovid: isChecked })
+                .done(function (response) {
+                    $("#vistaParcial").html(response);
+                });
+        });
+    });
+</script>

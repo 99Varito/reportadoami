@@ -57,16 +57,6 @@ namespace reportadoami.Controllers
     ORDER BY MAX(Fecha_alta) DESC
     ";
 
-
-
-
-
-      
-
-
-
-    
-
                 var ofnaParam = new SqlParameter("@p_ofna", string.IsNullOrEmpty(ofna) ? (object)DBNull.Value : ofna);
                 var fechaSeleccionadaParam = new SqlParameter("@p_fechaSeleccionada", fechaSeleccionada.HasValue ? (object)fechaSeleccionada.Value : DBNull.Value);
                 var mostrarExamenesCovidParam = new SqlParameter("@p_mostrarExamenesCovid", mostrarExamenesCovid);
