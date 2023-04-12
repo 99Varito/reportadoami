@@ -1,0 +1,93 @@
+﻿
+@model List<reportadoami.Models.ViewModels.PacientesPorOficinaViewModel>
+@{
+    ViewBag.Title = "IndePacientesPorOficina";
+}
+<h2>Datos de la vista:</h2>
+<!-- HTML -->
+
+<canvas id="graficoPacientesPorOficina"></canvas>
+
+<!-- JS -->
+<script>
+    var ctx = document.getElementById('graficoPacientesPorOficina').getContext('2d');
+    var chart;
+
+    function actualizarGrafico(max) {
+        if (chart) {
+            chart.destroy();
+        }
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: oficinas.slice(0, max),
+                datasets: [{
+                    label: 'Cantidad de pacientes',
+                    data: pacientes.slice(0, max),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    var inputMaximoGrafico = document.getElementById('inputMaximoGrafico');
+    inputMaximoGrafico.addEventListener('input', function () {
+        var max = parseInt(this.value);
+        actualizarGrafico(max);
+    });
+
+    actualizarGrafico(50);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+<script>
+    // Obtener los datos desde la vista (en formato JSON)
+    var data = @Html.Raw(Json.Encode(Model));
+
+    // Obtener los nombres de las oficinas y la cantidad de pacientes como dos arrays separados
+    var oficinas = [];
+    var pacientes = [];
+    for (var i = 0; i < data.length; i++) {
+        oficinas.push(data[i].OFNa);
+        pacientes.push(data[i].TotalPacientes);
+    }
+
+    // Configuración del gráfico
+    var ctx = document.getElementById('graficoPacientesPorOficina').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: oficinas,
+            datasets: [{
+                label: 'Cantidad de pacientes',
+                data: pacientes,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

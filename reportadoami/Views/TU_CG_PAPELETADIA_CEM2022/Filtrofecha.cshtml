@@ -1,0 +1,273 @@
+﻿
+@{
+    ViewBag.Title = "NavPapeletadiaria";
+}
+
+
+<!-- Botón para mostrar/ocultar el sidebar -->
+<button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" style="padding: 5px 1em;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="16" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
+        <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z" />
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+    </svg>
+</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+<div class="export-btn-container d-flex justify-content-end">
+    <button type="button" onclick="location.href='@Url.Action("IndePacientesPorOficina", "PacientesPorOficina")'" class="btn btn-primary">Grafico</button>
+
+    <button id="export-btn" class="btn btn-success">Exportar a Excel</button>
+
+</div>
+    <script>
+        // Función que se ejecuta al hacer clic en el botón "Exportar a Excel"
+        document.getElementById("export-btn").addEventListener("click", function () {
+            // Obtenemos la tabla que queremos exportar
+            var table = document.querySelector(".my-table");
+
+            // Creamos una nueva instancia de Workbook de SheetJS
+            var wb = XLSX.utils.table_to_book(table);
+
+            // Convertimos el libro de trabajo a un archivo de Excel binario
+            var wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+            // Creamos un objeto Blob para guardar el archivo Excel
+            var blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+
+            // Creamos un enlace de descarga y simulamos un clic para descargar el archivo
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = "tabla.xlsx";
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+
+        // Función auxiliar para convertir una cadena a un ArrayBuffer
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+    </script>
+
+
+    <!-- Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel" style=" margin-bottom:0px; ">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarLabel">Filtrado especifico</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="max-height: 100%; overflow-y: auto; margin-bottom : 10px; padding-top:0px">
+
+
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        locale: "es",
+                        dateClick: function (info) {
+                            var fechaSeleccionada = info.dateStr;
+
+                            document.getElementById('fechaSeleccionada').value = fechaSeleccionada; // Actualiza el valor del campo oculto con la fecha seleccionada
+
+                            // change the day's background color just for fun
+                            info.dayEl.style.backgroundColor = 'red';
+                        },
+
+                    });
+                    calendar.render();
+
+                });
+
+
+            </script>
+
+
+            <div id='calendar'>
+
+            </div>
+
+
+
+            <div>
+                @using (Html.BeginForm("Index", "TU_CG_PAPELETADIA_CEM2022", FormMethod.Get))
+                {
+                    <div class="btn-group-vertical">
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="UMM" autocomplete="off"> UMM
+                        </label>
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="PIQ" autocomplete="off"> PIQ
+                        </label>
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="MARQUES" autocomplete="off"> MARQUES
+                        </label>
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="QUERETARO" autocomplete="off"> QUERETARO
+                        </label>
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="CELAYA" autocomplete="off"> CELAYA
+                        </label>
+                        <label class="btn button-34 btn-block">
+                            <input type="radio" name="ofna" value="OTRO" autocomplete="off"> OTRO
+                        </label>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="date" id="fechaSeleccionada" name="fechaSeleccionada" class="form-control" />
+                        <button type="submit" class="btn button-34" style="max-width: 40%; padding: 10px 10% ; text-align:center ;font-size:16px">Filtrar</button>
+                    </div>
+                }
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            // Mostrar/ocultar el sidebar cuando se hace clic en el botón
+            $('[data-bs-toggle="offcanvas"]').on('click', function () {
+                $('.offcanvas-start').toggleClass('show');
+            });
+
+            // Ocultar el sidebar cuando se hace clic fuera del mismo
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('.offcanvas-start').length && !$(event.target).is('[data-bs-toggle="offcanvas"]')) {
+                    $('.offcanvas-start').removeClass('show');
+                }
+
+            });
+
+        });
+
+
+    </script>
+    <style>
+        .fc-toolbar h2 {
+            font-size: 1.5em; /* ajusta el tamaño de fuente según tu preferencia */
+        }
+
+        .d-flex.align-items-center input {
+            width: 180px; /* ajusta el ancho según tus necesidades */
+            margin-right: 10px; /* espacio entre el input y el botón */
+        }
+
+        .d-flex.align-items-center button {
+            margin-left: auto; /* coloca el botón al final del contenedor */
+        }
+
+        #calendar {
+            overflow: hidden;
+            margin: 10px;
+            width: calc(100% - 20px);
+        }
+
+        /* Estilo de FullCalendar */
+        .fc {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Estilo del encabezado del calendario */
+        .fc-toolbar {
+            background-color: #03A696;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de los botones del encabezado del calendario */
+        .fc-button {
+            background-color: #03A696;
+            color: #fff;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .fc-toolbar.fc-header-toolbar .fc-row.fc-widget-header {
+            color: white;
+        }
+
+        /* Estilo del botón de hoy en el encabezado del calendario */
+        .fc-today-button {
+            background-color: #fff;
+            color: #03A696;
+            border-radius: 5px;
+        }
+
+        /* Estilo del día actual */
+        .fc-today {
+            color: #fff;
+            border-radius: 50%;
+        }
+
+        /* Estilo de las celdas de los días */
+        .fc-daygrid-day {
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            padding: 0px;
+            line-height: 0.8;
+            height: 10px; /* Ajusta la altura de la celda a tu gusto */
+        }
+
+
+
+        /* Estilo del evento */
+        .fc-event {
+            background-color: #03A696;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+
+
+        .btn-group-vertical {
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, -5%);
+            margin-top: 10px
+        }
+
+        .button-34 {
+            background: #5E5DF0;
+            border-radius: 999px;
+            box-shadow: #5E5DF0 0 10px 20px -10px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 1;
+            outline: 0 solid transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            word-break: break-word;
+            border: 0;
+            padding: 10px 120px;
+            text-align: center;
+            white-space: nowrap;
+            width: fit-content;
+        }
+    </style>

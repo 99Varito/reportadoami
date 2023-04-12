@@ -16,7 +16,7 @@ namespace reportadoami
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "TU_CG_PAPELETADIA_CEM2022", action = "DashBoards", id = UrlParameter.Optional }
             );
         }
     }

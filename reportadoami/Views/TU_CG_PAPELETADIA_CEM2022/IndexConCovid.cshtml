@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "IndexConCovid";
+}
+@Html.Partial("Filtrofecha")
+@Html.Partial("MenuOpciones")
+
+<br />
+<div class="table-responsive">
+    <div class="my-table table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Examen</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>OFNa</th>
+                    <th>Servicio</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Folio</td>
+                        <td>@item.Fecha_alta</td>
+                        <td>@item.Nombre_paciente</td>
+                        <td>@item.NOMBRE_EXAMEN</td>
+                        <td>@item.Perf_descripcion</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.Costo</td>
+                        <td>@item.OFNa</td>
+                        <td>@item.servicio</td>
+                        <td>@item.comentarios</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

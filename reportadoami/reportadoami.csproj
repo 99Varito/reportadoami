@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -128,7 +131,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\dashboardClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PacientesPorOficinaController.cs" />
     <Compile Include="Controllers\TU_CG_PAPELETADIA_CEM2022Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -313,6 +318,7 @@
     <Compile Include="Models\Model1\VW_TOY_PRUEBASINTERPRETACION_CRAM.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\PacientesPorOficinaViewModel.cs" />
     <Compile Include="Models\ViewModels\PapeletadiariaCemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -333,6 +339,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\estilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -385,9 +392,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\Index.cshtml" />
+    <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\DashBoard.cshtml" />
+    <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\Filtrofecha.cshtml" />
+    <Content Include="Views\PacientesPorOficina\IndePacientesPorOficina.cshtml" />
+    <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\MenuOpciones.cshtml" />
+    <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\IndexConCovid.cshtml" />
+    <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\IndexSinCovid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\" />
+    <Folder Include="Views\dashboardCliente\" />
+    <Folder Include="Views\navs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

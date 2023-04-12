@@ -26,5 +26,11 @@ namespace reportadoami.Controllers
 
             return View();
         }
+        public ActionResult NavPapeletaDiaria()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
