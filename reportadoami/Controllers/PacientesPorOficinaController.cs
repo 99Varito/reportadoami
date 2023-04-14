@@ -22,7 +22,7 @@ namespace reportadoami.Controllers
                 string query = @"
 DECLARE @dias INT = " + dias + @"
 
-SELECT TOP 50 OFNa, COUNT(*) AS TotalPacientes, MAX(Fecha_alta) AS Fecha_alta
+SELECT   OFNa, COUNT(*) AS TotalPacientes, MAX(Fecha_alta) AS Fecha_alta
 FROM TU_CG_PAPELETADIA_CEM2
 WHERE Fecha_alta >= DATEADD(DAY, -@dias, GETDATE())
 GROUP BY OFNa

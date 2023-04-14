@@ -22,21 +22,25 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Inicio", "DashBoard", "TU_CG_PAPELETADIA_CEM2022", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Tablas", "Index", "TU_CG_PAPELETADIA_CEM2022", new { area = "" }, new { @class = "nav-link" })</li>
-   
+
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+ 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Desarrollado el por área de sistemas iT</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
 </body>
 </html>

@@ -9,5 +9,9 @@ namespace reportadoami.Models.ViewModels
     {
         public string OFNa { get; set; }
         public int TotalPacientes { get; set; }
+        public int mes { get; set; }
+        public int Semana { get; set; }
+        public DateTime fecha  { get; set; }
+
     }
 }

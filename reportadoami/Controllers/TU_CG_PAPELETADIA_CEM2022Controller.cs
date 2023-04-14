@@ -14,21 +14,17 @@ namespace reportadoami.Controllers
 {
     public class TU_CG_PAPELETADIA_CEM2022Controller : Controller
     {
-        public ActionResult Index(string ofna, DateTime? fechaSeleccionada, bool mostrarExamenesCovid = false)
-        {
 
-            return IndexSinCovid(ofna,fechaSeleccionada);
-        }
-
-        public ActionResult IndexConCovid(string ofna, DateTime? fechaSeleccionada, bool mostrarExamenesCovid = true)
+        public ActionResult Index(string ofna, DateTime? fechaSeleccionada)
         {
             List<PapeletadiariaCemViewModel> lst;
             using (ANALISISEntities db = new ANALISISEntities())
             {
                 var query = @"
-            DECLARE @ofna varchar(50) = @p_ofna;
+  
+DECLARE @ofna varchar(50) = @p_ofna;
 DECLARE @fechaSeleccionada DATE = COALESCE(@p_fechaSeleccionada, DATEADD(day, -1, GETDATE()));
-DECLARE @mostrarExamenesCovid BIT = @p_mostrarExamenesCovid;
+
 
 SELECT Folio,
     Nombre_paciente, 
@@ -45,31 +41,32 @@ WHERE
     (OFNa = @ofna OR @ofna IS NULL)
     AND 
     (CONVERT(date, Fecha_alta, 120) = @fechaSeleccionada OR @fechaSeleccionada IS NULL)
-AND (@mostrarExamenesCovid = 1 AND (NOMBRE_EXAMEN = 'PRUEBA PCR COVID' OR NOMBRE_EXAMEN = 'PRUEBA DE ANTIGENO COVID'))
+    AND
+
+   (  NOMBRE_EXAMEN NOT IN ('PRUEBA PCR COVID', 'PRUEBA DE ANTIGENO COVID'))
 GROUP BY Folio, Nombre_paciente, OFNa
 ORDER BY MAX(Fecha_alta) DESC
-
-
-        ";
+";
 
                 var ofnaParam = new SqlParameter("@p_ofna", string.IsNullOrEmpty(ofna) ? (object)DBNull.Value : ofna);
                 var fechaSeleccionadaParam = new SqlParameter("@p_fechaSeleccionada", fechaSeleccionada.HasValue ? (object)fechaSeleccionada.Value : DBNull.Value);
-                var mostrarExamenesCovidParam = new SqlParameter("@p_mostrarExamenesCovid", mostrarExamenesCovid);
-                lst = db.Database.SqlQuery<PapeletadiariaCemViewModel>(query, ofnaParam, fechaSeleccionadaParam,mostrarExamenesCovidParam).ToList();
+                lst = db.Database.SqlQuery<PapeletadiariaCemViewModel>(query, ofnaParam, fechaSeleccionadaParam).ToList(); 
             }
 
-            return View("Index", lst);
+            return View(lst);
         }
 
-        public ActionResult IndexSinCovid(string ofna, DateTime? fechaSeleccionada, bool mostrarExamenesCovid = false)
+
+        public ActionResult IndexConCovid(string ofna, DateTime? fechaSeleccionada, bool? mostrarExamenesCovid)
         {
             List<PapeletadiariaCemViewModel> lst;
             using (ANALISISEntities db = new ANALISISEntities())
             {
                 var query = @"
-               DECLARE @ofna varchar(50) = @p_ofna;
+  
+DECLARE @ofna varchar(50) = @p_ofna;
 DECLARE @fechaSeleccionada DATE = COALESCE(@p_fechaSeleccionada, DATEADD(day, -1, GETDATE()));
-DECLARE @mostrarExamenesCovid BIT = @p_mostrarExamenesCovid;
+
 
 SELECT Folio,
     Nombre_paciente, 
@@ -86,30 +83,28 @@ WHERE
     (OFNa = @ofna OR @ofna IS NULL)
     AND 
     (CONVERT(date, Fecha_alta, 120) = @fechaSeleccionada OR @fechaSeleccionada IS NULL)
-AND (@mostrarExamenesCovid = 0 AND (NOMBRE_EXAMEN = 'PRUEBA PCR COVID' OR NOMBRE_EXAMEN = 'PRUEBA DE ANTIGENO COVID'))
+   AND (NOMBRE_EXAMEN = 'PRUEBA PCR COVID' OR NOMBRE_EXAMEN = 'PRUEBA DE ANTIGENO COVID')
 GROUP BY Folio, Nombre_paciente, OFNa
 ORDER BY MAX(Fecha_alta) DESC
-
-        ";
+";
 
                 var ofnaParam = new SqlParameter("@p_ofna", string.IsNullOrEmpty(ofna) ? (object)DBNull.Value : ofna);
                 var fechaSeleccionadaParam = new SqlParameter("@p_fechaSeleccionada", fechaSeleccionada.HasValue ? (object)fechaSeleccionada.Value : DBNull.Value);
-                var mostrarExamenesCovidParam = new SqlParameter("@p_mostrarExamenesCovid", mostrarExamenesCovid);
-                lst = db.Database.SqlQuery<PapeletadiariaCemViewModel>(query, ofnaParam, fechaSeleccionadaParam,mostrarExamenesCovidParam).ToList();
+                ViewBag.mostrarExamenesCovid = mostrarExamenesCovid ?? false;
+                lst = db.Database.SqlQuery<PapeletadiariaCemViewModel>(query, ofnaParam, fechaSeleccionadaParam).ToList();
             }
 
-            return View("Index", lst);
+            return View(lst);
         }
 
 
 
 
 
-       
 
 
 
-    
+
 
     }
 }

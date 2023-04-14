@@ -1,8 +1,98 @@
 ﻿@model List<reportadoami.Models.ViewModels.PapeletadiariaCemViewModel>
 
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "Papeleta Diaria";
 }
-@Html.Partial("Filtrofecha")
 
-@Html.Partial("MenuOpciones")
+<link rel="stylesheet" href="~/Content/css/estilos.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<h2>Papeletas diarias</h2>
+@Html.Partial("Filtrofecha")
+<div>
+    @using (Html.BeginForm("Index", "TU_CG_PAPELETADIA_CEM2022", FormMethod.Get))
+    {
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group mr-3">
+
+                <button type="submit" name="ofna" value="UMM" class="btn btn-primary">UMM</button>
+                <button type="submit" name="ofna" value="PIQ" class="btn btn-primary">PIQ</button>
+                <button type="submit" name="ofna" value="MARQUES" class="btn btn-primary">MARQUES</button>
+                <button type="submit" name="ofna" value="QUERETARO" class="btn btn-primary">QUERETARO</button>
+
+
+            </div>
+            <span>Total de registros: @Model.Count</span>
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Ver Covid</label>
+                <input class="form-check-input" type="checkbox" id="mostrarExamenesCovid" name="mostrarExamenesCovid" onchange="actualizarVista()" style=" max-width:50px" />
+
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+<script>
+function actualizarVista() {
+    var mostrarExamenesCovid = document.getElementById("mostrarExamenesCovid").checked;
+   var url = '@Url.Action("IndexConCovid", "TU_CG_PAPELETADIA_CEM2022", new { ofna = ViewBag.ofna, fechaSeleccionada = ViewBag.fechaSeleccionada, mostrarExamenesCovid = "PLACEHOLDER" })';
+url = url.replace("PLACEHOLDER", encodeURIComponent(mostrarExamenesCovid));
+
+
+    window.location.href = url;
+}
+</script>
+
+
+
+<br />
+<div class="table-responsive">
+    <div class="my-table table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Examen</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>OFNa</th>
+                    <th>Servicio</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Folio</td>
+                        <td>@item.Fecha_alta</td>
+                        <td>@item.Nombre_paciente</td>
+                        <td>
+                            <ul>
+                                @foreach (var examen in item.NOMBRE_EXAMEN.Split(','))
+                                {
+                                    <li>@examen</li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@item.Perf_descripcion</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.Costo</td>
+                        <td>@item.OFNa</td>
+                        <td>@item.servicio</td>
+                        <td>@item.comentarios</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
