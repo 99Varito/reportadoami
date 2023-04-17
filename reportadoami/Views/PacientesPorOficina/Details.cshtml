@@ -1,0 +1,77 @@
+﻿@model List<reportadoami.Models.ViewModels.DetailsviewModel>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form class="form-inline" action="@Url.Action("Details", "PacientesPorOficina")" method="get">
+                    <label class="mr-sm-2" for="oficina">Oficina:</label>
+                    <select class="form-control mr-sm-2" name="oficina" id="oficina">
+                        <option value="UMM">UMM</option>
+                        <option value="PIQ">PIQ</option>
+                        <option value="MARQUES">MARQUES</option>
+                        <option value="QUERETARO">QUERETARO</option>
+                    </select>
+
+                    <label class="mr-sm-2" for="periodo">Periodo:</label>
+                    <select class="form-control mr-sm-2" name="periodo" id="periodo">
+                        <option value="Dia">Día</option>
+                        <option value="Semana">Semana</option>
+                        <option value="Mes">Mes</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="chart-container" style="position: relative; height:400px; width:100%;">
+    <canvas id="chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+<script>
+   var chartData = @Html.Raw(Json.Encode(Model));
+
+chartData.forEach(function (item) {
+    var date = new Date(item.Fecha);
+    if (periodo == "Mes") {
+        item.Fecha = date.getFullYear() + '-' + (date.getMonth());
+    } else {
+        item.Fecha = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    }
+  
+});
+
+var ctx = document.getElementById('chart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: chartData.map(d => d.Fecha),
+        datasets: [{
+            label: 'Total Pacientes',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            data: chartData.map(d => d.TotalPacientes),
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+@{
+    Console.WriteLine("Data Count: " + Model.Count());
+}

@@ -3,20 +3,23 @@
 @{
     ViewBag.Title = "IndePacientesPorOficina";
 }
-<h2>Datos de la vista:</h2>
-<!-- HTML -->
-<h2>Grafico en los </h2>
+<h2>DashBoard</h2>
+
 @using (Html.BeginForm("IndePacientesPorOficina", "PacientesPorOficinaController", FormMethod.Get))
-{
+{<!-- HTML -->
+    <h4>Ultimos </h4>
+    <input />
     <div class="container-sm">
         <canvas id="graficoPacientesPorOficina"></canvas>
 
     </div>
 
 }
-    <!-- JS -->
-   
+<!-- JS -->
 
+<div class="container-sm">
+    @Html.Partial("Details")
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
     <script>

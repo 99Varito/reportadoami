@@ -318,6 +318,7 @@
     <Compile Include="Models\Model1\VW_TOY_PRUEBASINTERPRETACION_CRAM.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\DetailsviewModel.cs" />
     <Compile Include="Models\ViewModels\PacientesPorOficinaViewModel.cs" />
     <Compile Include="Models\ViewModels\PapeletadiariaCemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -401,6 +402,7 @@
     <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\IndexConCovid.cshtml" />
     <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\IndexSinCovid.cshtml" />
     <Content Include="Views\TU_CG_PAPELETADIA_CEM2022\FiltrofechaCovid.cshtml" />
+    <Content Include="Views\PacientesPorOficina\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
